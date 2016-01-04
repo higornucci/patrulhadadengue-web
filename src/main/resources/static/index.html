@@ -21,7 +21,7 @@
 </head>
 
 <body ng-app="hello">
-    
+
     <h2>Registre o foco da dengue que você encontrou.</h1>
     <div id="map"></div>    
 
@@ -46,17 +46,40 @@
 
             var image = 'img/map-marker.png';
 
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
-                title: 'Hello World!',
-                icon: image
+            addMarker(map, image, myLatLng);
+            
+            addCircle(map, myLatLng);
+            
+            map.addListener("click", function (event) {
+                var latitude = event.latLng.lat();
+                var longitude = event.latLng.lng();
+                console.log( latitude + ', ' + longitude );
+                
+                addMarker(map, image, event.latLng);
+                
+                addCircle(map, event.latLng);
             });
-
-            marker.addListener('click', function() {
-                map.setZoom(zoomDefault);
-                map.setCenter(marker.getPosition());
-            });
+            
+            function addMarker(map, image, latLng) {
+                new google.maps.Marker({
+                    position: latLng,
+                    map: map,
+                    title: 'Hello World!',
+                    icon: image
+                });
+            };
+            
+            function addCircle(map, latLng) {
+                new google.maps.Circle({map: map,
+                    radius: 100,
+                    center: latLng,
+                    fillColor: '#777',
+                    fillOpacity: 0.1,
+                    strokeColor: '#AA0000',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 2
+                });        
+            };
         }
     </script>
 
