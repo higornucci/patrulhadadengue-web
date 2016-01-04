@@ -1,11 +1,17 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
     <title>Dengoso</title>
-    <style>
+    <link href="css/angular-bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        [ng\:cloak],
+        [ng-cloak],
+        .ng-cloak {
+            display: none !important;
+        }
+        
         html,
         body {
             height: 100%;
@@ -20,8 +26,14 @@
     </style>
 </head>
 
-<body>
-    <div id="map"></div>
+<body ng-app="hello">
+    <div class="container">
+        <h1>Registre o foco da dengue que você encontrar.</h1>
+        <div ng-controller="home" ng-cloak class="ng-cloak">
+            <div id="map"></div>
+        </div>
+    </div>
+    
     <script>
         function initMap() {
             var zoomDefault = 16;
@@ -55,6 +67,9 @@
     </script>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyvUvW-ejncX6xqy7pqf-c9Evz_wDF_Hc&signed_in=true&callback=initMap"></script>
+
+    <script src="js/angular-bootstrap.js" type="text/javascript"></script>
+    <script src="js/hello.js"></script>
 </body>
 
 </html>
