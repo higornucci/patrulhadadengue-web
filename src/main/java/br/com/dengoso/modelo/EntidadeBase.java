@@ -10,11 +10,11 @@ import javax.persistence.MappedSuperclass;
 public class EntidadeBase {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)  
+	@GeneratedValue(strategy = GenerationType.AUTO)  
 	@Column(nullable = false)
-	private Integer id;  
+	private Long id;  
 
-	public Integer getId() {  
+	public Long getId() {  
 		return id;  
 	}  
 

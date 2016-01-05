@@ -12,6 +12,9 @@ public final class FocoDeDengue extends EntidadeBase {
 	@Embedded
 	private Coordenadas coordenadas;
 	
+	private FocoDeDengue() {
+	}
+	
 	private FocoDeDengue(Coordenadas coordenadas) {
 		this.coordenadas = coordenadas;
 	}

@@ -6,6 +6,9 @@ import javax.persistence.Embeddable;
 public class Longitude {
 
 	private double longitude;
+	
+	Longitude() {
+	}
 
 	Longitude(double valor) {
 		this.longitude = valor;

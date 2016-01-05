@@ -11,7 +11,7 @@ public class FocoDeDengueTeste {
 	public void deve_poder_adicionar_coordenadas_a_um_foco_de_dengue() throws Exception {
 		double latitudeEsperada =  -20.496323d;
 		double longitudeEsperada =  -20.496323d;
-		Coordenadas coordenadasEsperadas = new Coordenadas(latitudeEsperada, longitudeEsperada);
+		Coordenadas coordenadasEsperadas = Coordenadas.criar(latitudeEsperada, longitudeEsperada);
 		
 		FocoDeDengue focoDeDengue = FocoDeDengueBuilder.novo().localizadoNas(coordenadasEsperadas).criar();
 		
