@@ -1,14 +1,17 @@
 package br.com.dengoso.modelo.coordenadas;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Longitude {
 
-	private double valor;
+	private double longitude;
 
 	Longitude(double valor) {
-		this.valor = valor;
+		this.longitude = valor;
 	}
 	
 	public double getValor() {
-		return valor;
+		return longitude;
 	}
 }

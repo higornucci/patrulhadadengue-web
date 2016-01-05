@@ -1,11 +1,17 @@
 package br.com.dengoso.modelo.foco;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+
+import br.com.dengoso.modelo.EntidadeBase;
 import br.com.dengoso.modelo.coordenadas.Coordenadas;
 
-public final class FocoDeDengue {
+@Entity
+public final class FocoDeDengue extends EntidadeBase {
 
+	@Embedded
 	private Coordenadas coordenadas;
-
+	
 	private FocoDeDengue(Coordenadas coordenadas) {
 		this.coordenadas = coordenadas;
 	}

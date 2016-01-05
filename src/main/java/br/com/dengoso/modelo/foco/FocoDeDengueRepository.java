@@ -1,7 +1,7 @@
 package br.com.dengoso.modelo.foco;
 
-public interface FocoDeDengueRepository {
+import org.springframework.data.repository.CrudRepository;
 
-	void salvar(FocoDeDengue focoDeDengue);
+public interface FocoDeDengueRepository extends CrudRepository<FocoDeDengue, Long> {
 
 }

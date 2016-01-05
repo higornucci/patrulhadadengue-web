@@ -20,6 +20,6 @@ public class AdicionaFocoDeDengueTeste {
 		
 		new AdicionaAdicionaFocoDeDengue(focoDeDengueRepository).adicionar(focoDeDengueRequest);
 		
-		verify(focoDeDengueRepository).salvar(any(FocoDeDengue.class));
+		verify(focoDeDengueRepository).save(any(FocoDeDengue.class));
 	}
 }
