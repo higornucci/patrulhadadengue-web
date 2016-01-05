@@ -19,7 +19,7 @@ public class ConsultaFocoDeDengue {
 		this.focoDeDengueRepository = focoDeDengueRepository;
 	}
 
-	public FocoDeDengueResponse buscarPorId(Long id) {
+	public FocoDeDengueResponse buscarUm(Long id) {
 		FocoDeDengue focoDeDengue = focoDeDengueRepository.findOne(id);
 		return new FocoDeDengueResponse(focoDeDengue.getId(), focoDeDengue.getLatitude(), focoDeDengue.getLongitude());
 	}

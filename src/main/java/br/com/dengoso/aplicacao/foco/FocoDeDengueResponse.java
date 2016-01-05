@@ -7,6 +7,7 @@ public class FocoDeDengueResponse {
 	private double longitude;
 
 	public FocoDeDengueResponse(long id, double latitude, double longitude) {
+		this.id = id;
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}

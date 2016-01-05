@@ -2,13 +2,16 @@ package br.com.dengoso.modelo.foco;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import br.com.dengoso.modelo.EntidadeBase;
 import br.com.dengoso.modelo.coordenadas.Coordenadas;
 
 @Entity
 public final class FocoDeDengue extends EntidadeBase {
-
+	
 	@Embedded
 	private Coordenadas coordenadas;
 	

@@ -10,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 public class EntidadeBase {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)  
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(nullable = false)
 	private Long id;  
 

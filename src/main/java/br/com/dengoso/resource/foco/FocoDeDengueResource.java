@@ -33,12 +33,13 @@ public class FocoDeDengueResource {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> registrarFocoDeDengue(@RequestBody FocoDeDengueRequest focoDeDengueRequest) {
-		adicionaFocoDeDengue.adicionar(focoDeDengueRequest);
-		System.out.println(focoDeDengueRequest.getLatitude() + ", " + focoDeDengueRequest.getLongitude());
+		FocoDeDengueRequest focoDeDengue = new FocoDeDengueRequest(focoDeDengueRequest.getLatitude(), focoDeDengueRequest.getLongitude());
+		adicionaFocoDeDengue.adicionar(focoDeDengue);
+		System.out.println(focoDeDengue.getLatitude() + ", " + focoDeDengue.getLongitude());
 
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(focoDeDengueRequest.getId()).toUri());
+				.buildAndExpand(focoDeDengue.getId()).toUri());
 		return new ResponseEntity<>(null, httpHeaders, HttpStatus.CREATED);
 	}
 
@@ -46,8 +47,14 @@ public class FocoDeDengueResource {
 	public List<FocoDeDengueResponse> buscarTodos() {
 		return consultaFocoDeDengue.buscarTodos();
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
+	public FocoDeDengueResponse buscarUm(@PathVariable Long id) {
+		System.out.println(id);
+		return consultaFocoDeDengue.buscarUm(id);
+	}
 
-	@RequestMapping(method = RequestMethod.DELETE, value = "{id}")
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
 	public void remover(@PathVariable String id) {
 	}
 }
