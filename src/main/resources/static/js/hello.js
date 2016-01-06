@@ -1,9 +1,5 @@
 angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
-    $http.get('foco/').success(function (data) {
-        $scope.focosDeDengue = data;
-        console.log($scope.focosDeDengue);
-    });
-    
+
     function addMarker(map, latLng) {
         var image = 'img/map-marker.png';
         new google.maps.Marker({
@@ -12,7 +8,7 @@ angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
             title: 'Hello World!',
             icon: image
         });
-    };
+    }
 
     function addCircle(map, latLng) {
         new google.maps.Circle({
@@ -25,33 +21,39 @@ angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
             strokeOpacity: 0.8,
             strokeWeight: 2
         });
-    };
-    
-    var zoomDefault = 16;
+    }
 
-    var myLatLng = {
-        lat: -20.496323,
-        lng: -54.573407
-    };
+    function iniciarMapa(focosDeDengue) {
+        var zoomDefault = 16;
 
-    $scope.map = new google.maps.Map(document.getElementById('mapa'), {
-        zoom: zoomDefault,
-        center: myLatLng,
-        streetViewControl: true,
-        mapTypeId: google.maps.MapTypeId.SATELLITE
-    });
+        var myLatLng = {
+            lat: -20.496323,
+            lng: -54.573407
+        };
 
-    addMarker($scope.map, myLatLng);
+        $scope.map = new google.maps.Map(document.getElementById('mapa'), {
+            zoom: zoomDefault,
+            center: myLatLng,
+            streetViewControl: true,
+            mapTypeId: google.maps.MapTypeId.SATELLITE
+        });
 
-    addCircle($scope.map, myLatLng);
+        addMarker($scope.map, myLatLng);
 
-    $scope.map.addListener("click", function (event) {
-        var latitude = event.latLng.lat();
-        var longitude = event.latLng.lng();
-        console.log(latitude + ', ' + longitude);
+        addCircle($scope.map, myLatLng);
 
-        addMarker($scope.map, event.latLng);
+        $scope.map.addListener("click", function (event) {
+            var latitude = event.latLng.lat();
+            var longitude = event.latLng.lng();
+            console.log(latitude + ', ' + longitude);
 
-        addCircle($scope.map, event.latLng);
+            addMarker($scope.map, event.latLng);
+
+            addCircle($scope.map, event.latLng);
+        });
+    }
+
+    $http.get('foco/').success(function (data) {
+        iniciarMapa(data);
     });
 });
