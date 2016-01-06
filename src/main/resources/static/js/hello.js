@@ -1,5 +1,17 @@
 angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
 
+    function adicionarMarcadorNoBanco(mapa, coordenadas) {
+        var coordenadasParaEnvio = {
+            latitude: coordenadas.lat,
+            longitude: coordenadas.lng
+        };
+        $http.post('/foco', coordenadasParaEnvio).success(function(data, status, headers, config) {
+			addMarker(mapa, coordenadas);
+
+            addCircle(mapa, coordenadas);
+		});
+    }
+    
     function addMarker(map, latLng) {
         var image = 'img/map-marker.png';
         new google.maps.Marker({
@@ -15,16 +27,16 @@ angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
             map: map,
             radius: 100,
             center: latLng,
-            fillColor: '#777',
-            fillOpacity: 0.1,
-            strokeColor: '#AA0000',
-            strokeOpacity: 0.8,
+            fillColor: '#AA6F39',
+            fillOpacity: 0.3,
+            strokeColor: '#AB5709',
+            strokeOpacity: 0.7,
             strokeWeight: 2
         });
     }
 
     function iniciarMapa(focosDeDengue) {
-        var zoomDefault = 16;
+        var zoomDefault = 17;
 
         var myLatLng = {
             lat: -20.496323,
@@ -38,18 +50,23 @@ angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
             mapTypeId: google.maps.MapTypeId.SATELLITE
         });
 
-        addMarker($scope.map, myLatLng);
+        var i, coordenadas;
+        for(i = 0; i < focosDeDengue.length; i++){
+            coordenadas = {
+                lat: focosDeDengue[i].latitude,
+                lng: focosDeDengue[i].longitude
+            };
+            addMarker($scope.map, coordenadas);
 
-        addCircle($scope.map, myLatLng);
+            addCircle($scope.map, coordenadas);
+        }
 
         $scope.map.addListener("click", function (event) {
-            var latitude = event.latLng.lat();
-            var longitude = event.latLng.lng();
-            console.log(latitude + ', ' + longitude);
-
-            addMarker($scope.map, event.latLng);
-
-            addCircle($scope.map, event.latLng);
+            coordenadas = {
+                lat: event.latLng.lat(),
+                lng: event.latLng.lng()
+            };
+            adicionarMarcadorNoBanco($scope.map, coordenadas);
         });
     }
 
