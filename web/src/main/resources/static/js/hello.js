@@ -5,19 +5,19 @@ angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
             latitude: coordenadas.lat,
             longitude: coordenadas.lng
         };
-        $http.post('/foco', coordenadasParaEnvio).success(function(data, status, headers, config) {
-			addMarker(mapa, coordenadas);
+        $http.post('/foco', coordenadasParaEnvio).success(function (data, status, headers, config) {
+            addMarker(mapa, coordenadas);
 
             addCircle(mapa, coordenadas);
-		});
+        });
     }
-    
+
     function addMarker(map, latLng) {
         var image = 'img/map-marker.png';
         new google.maps.Marker({
             position: latLng,
             map: map,
-            title: 'Hello World!',
+            title: 'Existe um foco de dengue aqui',
             icon: image
         });
     }
@@ -38,20 +38,33 @@ angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
     function iniciarMapa(focosDeDengue) {
         var zoomDefault = 17;
 
-        var myLatLng = {
-            lat: -20.496323,
-            lng: -54.573407
+        var initialLocation;
+        var campoGrande = {
+            lat: -19.55722,
+            lng: -53.35361
         };
 
         $scope.map = new google.maps.Map(document.getElementById('mapa'), {
             zoom: zoomDefault,
-            center: myLatLng,
             streetViewControl: true,
+            disableDoubleClickZoom: true,
             mapTypeId: google.maps.MapTypeId.SATELLITE
         });
 
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                $scope.map.setCenter(initialLocation);
+            }, function () {
+                $scope.map.setCenter(campoGrande);
+            });
+        } else {
+            $scope.map.setCenter(campoGrande);
+        }
+
+
         var i, coordenadas;
-        for(i = 0; i < focosDeDengue.length; i++){
+        for (i = 0; i < focosDeDengue.length; i++) {
             coordenadas = {
                 lat: focosDeDengue[i].latitude,
                 lng: focosDeDengue[i].longitude
