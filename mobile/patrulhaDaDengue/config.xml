@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.patrulhadadengue309083" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>patrulhaDaDengue</name>
+  <name>Patrulha da Dengue</name>
   <description>
-        An Ionic Framework and Cordova project.
+        Projeto para ajudar a detectar focos de dengue espalhados pela cidade
     </description>
-  <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
+  <author email="higornucci@gmail.com" href="http://patrulhadadengue.com/">
+      Higor Nucci
     </author>
   <content src="index.html"/>
   <access origin="*"/>

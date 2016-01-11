@@ -25,7 +25,7 @@ example.controller('MapController', function ($scope, $ionicLoading, $http) {
                 latitude: coordenadas.lat,
                 longitude: coordenadas.lng
             };
-            $http.post('http://localhost:8080/focos', coordenadasParaEnvio).success(function (data, status, headers, config) {
+            $http.post('http://192.168.0.15:8080/focos', coordenadasParaEnvio).success(function (data, status, headers, config) {
                 addMarker(mapa, coordenadas);
 
                 addCircle(mapa, coordenadas);
@@ -103,7 +103,7 @@ example.controller('MapController', function ($scope, $ionicLoading, $http) {
             });
         }
 
-        $http.get('http://localhost:8080/focos/').success(function (data) {
+        $http.get('http://192.168.0.15:8080/focos/').success(function (data) {
             iniciarMapa(data);
             $ionicLoading.hide();
         });
