@@ -11,12 +11,12 @@ var example = angular.module('starter', ['ionic'])
             StatusBar.styleDefault();
         }
     });
-})
+});
 
-example.controller('MapController', function ($scope, $ionicLoading, $http, $cordovaGeolocation) {
-    
+example.controller('MapController', function ($scope, $ionicLoading, $http) {
+
     $ionicLoading.show({
-      template: 'Carregando focos de dengue...'
+        template: 'Carregando focos de dengue...'
     });
 
     google.maps.event.addDomListener(window, 'load', function () {
@@ -105,6 +105,7 @@ example.controller('MapController', function ($scope, $ionicLoading, $http, $cor
 
         $http.get('http://localhost:8080/focos/').success(function (data) {
             iniciarMapa(data);
+            $ionicLoading.hide();
         });
     });
 

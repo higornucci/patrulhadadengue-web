@@ -4,3 +4,4 @@
 .settings/
 *.stackdump
 *.springBeans
+.brackets.json
