@@ -5,7 +5,7 @@ angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
             latitude: coordenadas.lat,
             longitude: coordenadas.lng
         };
-        $http.post('/foco', coordenadasParaEnvio).success(function (data, status, headers, config) {
+        $http.post('/focos', coordenadasParaEnvio).success(function (data, status, headers, config) {
             addMarker(mapa, coordenadas);
 
             addCircle(mapa, coordenadas);
@@ -83,7 +83,7 @@ angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
         });
     }
 
-    $http.get('foco/').success(function (data) {
+    $http.get('focos/').success(function (data) {
         iniciarMapa(data);
     });
 });

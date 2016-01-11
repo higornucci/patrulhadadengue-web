@@ -19,7 +19,7 @@ import br.com.dengoso.aplicacao.foco.FocoDeDengueRequest;
 import br.com.dengoso.aplicacao.foco.FocoDeDengueResponse;
 
 @RestController
-@RequestMapping("/foco")
+@RequestMapping("/focos")
 public class FocoDeDengueResource {
 
 	private final AdicionaFocoDeDengue adicionaFocoDeDengue;
