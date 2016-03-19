@@ -5,3 +5,5 @@
 *.stackdump
 *.springBeans
 .brackets.json
+web/.idea/
+web/dengoso.iml
