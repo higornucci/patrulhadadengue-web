@@ -2,6 +2,7 @@ package br.com.dengoso.aplicacao.foco;
 
 import javax.transaction.Transactional;
 
+import br.com.dengoso.modelo.excecao.ExcecaoDeCampoObrigatorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class AdicionaFocoDeDengue {
 	}
 
 	@Transactional
-	public void adicionar(FocoDeDengueRequest focoDeDengueRequest) {
+	public void adicionar(FocoDeDengueRequest focoDeDengueRequest) throws ExcecaoDeCampoObrigatorio {
 		Coordenadas coordenadas = Coordenadas.criar(focoDeDengueRequest.getLatitude(), focoDeDengueRequest.getLongitude());
 		FocoDeDengue focoDeDengue = FocoDeDengue.criar(coordenadas);
 		

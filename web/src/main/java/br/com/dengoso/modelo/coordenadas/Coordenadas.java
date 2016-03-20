@@ -11,7 +11,7 @@ public final class Coordenadas {
 	@Embedded
 	private Longitude longitude;
 	
-	private Coordenadas() {
+	Coordenadas() {
 	}
 
 	private Coordenadas(double latitude, double longitude) {

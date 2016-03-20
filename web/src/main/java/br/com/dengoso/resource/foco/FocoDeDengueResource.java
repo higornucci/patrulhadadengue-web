@@ -2,6 +2,7 @@ package br.com.dengoso.resource.foco;
 
 import java.util.List;
 
+import br.com.dengoso.modelo.excecao.ExcecaoDeCampoObrigatorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -34,7 +35,7 @@ public class FocoDeDengueResource {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> registrarFocoDeDengue(@RequestBody FocoDeDengueRequest focoDeDengueRequest) {
+	public ResponseEntity<?> registrarFocoDeDengue(@RequestBody FocoDeDengueRequest focoDeDengueRequest) throws ExcecaoDeCampoObrigatorio {
 		FocoDeDengueRequest focoDeDengue = new FocoDeDengueRequest(focoDeDengueRequest.getLatitude(), focoDeDengueRequest.getLongitude());
 		adicionaFocoDeDengue.adicionar(focoDeDengue);
 		System.out.println(focoDeDengue.getLatitude() + ", " + focoDeDengue.getLongitude());
