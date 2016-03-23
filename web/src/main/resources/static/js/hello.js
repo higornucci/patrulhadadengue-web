@@ -22,10 +22,10 @@ angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
         });
     }
 
-    function addCircle(map, latLng) {
+    function addCircle(map, latLng, raio) {
         new google.maps.Circle({
             map: map,
-            radius: 100,
+            radius: raio,
             center: latLng,
             fillColor: '#AA6F39',
             fillOpacity: 0.3,
@@ -71,7 +71,8 @@ angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
             };
             addMarker($scope.map, coordenadas);
 
-            addCircle($scope.map, coordenadas);
+            var raio = focosDeDengue[i].raioDoFoco;
+            addCircle($scope.map, coordenadas, raio);
         }
 
         $scope.map.addListener("click", function (event) {
