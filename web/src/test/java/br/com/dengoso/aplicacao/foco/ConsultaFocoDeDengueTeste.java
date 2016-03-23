@@ -2,9 +2,13 @@ package br.com.dengoso.aplicacao.foco;
 
 import br.com.dengoso.modelo.coordenadas.Coordenadas;
 import br.com.dengoso.modelo.foco.FocoDeDengue;
+import br.com.dengoso.modelo.foco.FocoDeDengueBuilder;
 import br.com.dengoso.modelo.foco.FocoDeDengueRepository;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 import static org.hamcrest.Matchers.*;
@@ -25,7 +29,7 @@ public class ConsultaFocoDeDengueTeste {
 
     @Test
     public void deve_retornar_um_foco_pelo_seu_id() throws Exception {
-        FocoDeDengue focoDeDengue = FocoDeDengue.criar(coordenadas);
+        FocoDeDengue focoDeDengue = FocoDeDengueBuilder.novo().localizadoNas(coordenadas).criar();
         when(focoDeDengueRepository.findOne(anyLong())).thenReturn(focoDeDengue);
         ConsultaFocoDeDengue consultaFocoDeDengue = new ConsultaFocoDeDengue(focoDeDengueRepository);
 
@@ -33,6 +37,18 @@ public class ConsultaFocoDeDengueTeste {
 
         FocoDeDengueResponse focoDeDengueResponseEsperado = criarResponse(focoDeDengue);
         assertThat(focoDeDengueResponse, is(equalTo(focoDeDengueResponseEsperado)));
+    }
+
+    @Test
+    public void deve_retornar_todos_os_focos() throws Exception {
+        FocoDeDengue focoDeDengue1 = FocoDeDengueBuilder.novo().localizadoNas(coordenadas).criar();
+        FocoDeDengue focoDeDengue2 = FocoDeDengueBuilder.novo().localizadoNas(coordenadas).criar();
+        when(focoDeDengueRepository.findAll()).thenReturn(Arrays.asList(focoDeDengue1, focoDeDengue2));
+        ConsultaFocoDeDengue consultaFocoDeDengue = new ConsultaFocoDeDengue(focoDeDengueRepository);
+
+        List<FocoDeDengueResponse> focosDeDengue = consultaFocoDeDengue.buscarTodos();
+
+        assertThat(focosDeDengue, contains(criarResponse(focoDeDengue1), criarResponse(focoDeDengue2)));
     }
 
     private FocoDeDengueResponse criarResponse(FocoDeDengue focoDeDengue) {

@@ -3,7 +3,7 @@ package br.com.dengoso.modelo.coordenadas;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Latitude {
+class Latitude {
 
 	private double latitude;
 	
