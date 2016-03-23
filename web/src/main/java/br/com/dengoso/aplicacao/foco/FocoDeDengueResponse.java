@@ -1,19 +1,16 @@
 package br.com.dengoso.aplicacao.foco;
 
-public class FocoDeDengueResponse {
+public class FocoDeDengueResponse extends BaseResponse {
 
-	private long id;
 	private double latitude;
 	private double longitude;
+	private int raioDoFoco;
 
-	public FocoDeDengueResponse(long id, double latitude, double longitude) {
-		this.id = id;
+	public FocoDeDengueResponse(Long id, double latitude, double longitude, int raioDoFoco) {
+		super(id);
 		this.latitude = latitude;
 		this.longitude = longitude;
-	}
-	
-	public long getId() {
-		return id;
+		this.raioDoFoco = raioDoFoco;
 	}
 	
 	public double getLatitude() {
@@ -22,5 +19,9 @@ public class FocoDeDengueResponse {
 	
 	public double getLongitude() {
 		return longitude;
+	}
+
+	public int getRaioDoFoco() {
+		return this.raioDoFoco;
 	}
 }

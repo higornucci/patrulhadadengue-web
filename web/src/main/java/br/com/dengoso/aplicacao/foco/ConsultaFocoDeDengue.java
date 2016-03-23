@@ -1,13 +1,12 @@
 package br.com.dengoso.aplicacao.foco;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import br.com.dengoso.modelo.foco.FocoDeDengue;
+import br.com.dengoso.modelo.foco.FocoDeDengueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.dengoso.modelo.foco.FocoDeDengue;
-import br.com.dengoso.modelo.foco.FocoDeDengueRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ConsultaFocoDeDengue {
@@ -21,7 +20,7 @@ public class ConsultaFocoDeDengue {
 
 	public FocoDeDengueResponse buscarUm(Long id) {
 		FocoDeDengue focoDeDengue = focoDeDengueRepository.findOne(id);
-		return new FocoDeDengueResponse(focoDeDengue.getId(), focoDeDengue.getLatitude(), focoDeDengue.getLongitude());
+		return criarRespostaUnica(focoDeDengue);
 	}
 
 	public List<FocoDeDengueResponse> buscarTodos() {
@@ -30,14 +29,14 @@ public class ConsultaFocoDeDengue {
 	}
 
 	private List<FocoDeDengueResponse> criarResposta(List<FocoDeDengue> todosOsFocos) {
-		List<FocoDeDengueResponse> resposta = new ArrayList<>();
-		for (FocoDeDengue focoDeDengue : todosOsFocos) {
-			resposta.add(
-					new FocoDeDengueResponse(
-							focoDeDengue.getId(), 
-							focoDeDengue.getLatitude(), 
-							focoDeDengue.getLongitude()));
-		}
-		return resposta;
+		return todosOsFocos.stream().map(this::criarRespostaUnica).collect(Collectors.toList());
+	}
+
+	private FocoDeDengueResponse criarRespostaUnica(FocoDeDengue focoDeDengue) {
+		return new FocoDeDengueResponse(
+                focoDeDengue.getId(),
+                focoDeDengue.getLatitude(),
+                focoDeDengue.getLongitude(),
+                focoDeDengue.getRaioDoFoco());
 	}
 }
