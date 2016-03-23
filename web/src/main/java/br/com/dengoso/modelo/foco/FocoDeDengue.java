@@ -11,9 +11,10 @@ import java.util.Date;
 
 @Entity
 public final class FocoDeDengue extends EntidadeBase {
-	
+
 	@Embedded
 	private Coordenadas coordenadas;
+	private int raioDoFoco;
 	private Date dataDeCriacao;
 
 	FocoDeDengue() {
@@ -22,6 +23,7 @@ public final class FocoDeDengue extends EntidadeBase {
 	private FocoDeDengue(Coordenadas coordenadas) {
 		this.coordenadas = coordenadas;
 		this.dataDeCriacao = new Date();
+		this.raioDoFoco = 100;
 	}
 
 	public static FocoDeDengue criar(Coordenadas coordenadas) throws ExcecaoDeCampoObrigatorio {
@@ -42,5 +44,9 @@ public final class FocoDeDengue extends EntidadeBase {
 
 	public Date getDataDeCriacao() {
 		return this.dataDeCriacao;
+	}
+
+	public int getRaioDoFoco() {
+		return this.raioDoFoco;
 	}
 }

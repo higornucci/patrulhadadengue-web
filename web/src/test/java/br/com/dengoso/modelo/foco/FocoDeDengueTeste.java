@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 import static org.exparity.hamcrest.date.DateMatchers.*;
+import static org.hamcrest.Matchers.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -50,5 +51,15 @@ public class FocoDeDengueTeste {
         FocoDeDengue focoDeDengue = FocoDeDengueBuilder.novo().localizadoNas(coordenadasEsperadas).criar();
 
         assertThat(focoDeDengue.getDataDeCriacao(), isToday());
+    }
+
+    @Test
+    public void todo_foco_criado_deve_conter_a_distancia_que_o_mosquito_costuma_permenecer_longe_de_seu_foco() throws Exception {
+        int raioEsperado = 100;
+        Coordenadas coordenadasEsperadas = Coordenadas.criar(_20_496323D, _20_496455D);
+
+        FocoDeDengue focoDeDengue = FocoDeDengueBuilder.novo().localizadoNas(coordenadasEsperadas).criar();
+
+        assertThat(focoDeDengue.getRaioDoFoco(), is(raioEsperado));
     }
 }

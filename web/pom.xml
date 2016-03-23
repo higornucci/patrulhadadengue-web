@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.test</groupId>
-	<artifactId>dengoso</artifactId>
+	<artifactId>patrulhadadengue</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
-	<name>dengoso</name>
-	<description>Projeto para ajudar a detectar focos de dengue espalhados pela cidade</description>
+	<name>Patrulha da Dengue</name>
+	<description>Projeto para ajudar a detectar focos do mosquito aedes aegypti espalhados pela cidade</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
