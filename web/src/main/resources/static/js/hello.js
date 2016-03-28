@@ -8,7 +8,7 @@ angular.module('dengoso', []).controller('MapCtrl', function ($scope, $http) {
         $http.post('/focos', coordenadasParaEnvio).success(function (data, status, headers, config) {
             addMarker(mapa, coordenadas);
 
-            addCircle(mapa, coordenadas);
+            addCircle(mapa, coordenadas, 100);
         });
     }
 

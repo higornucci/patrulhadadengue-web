@@ -9,6 +9,17 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.navbar-fixed-top, .navbar-fixed-bottom {
+    position: relative !important;
+}
+
+footer {
+    position: relative !important;
+}
+
 #mapa {
     height: 100%;
+    width: 100%;
+    display: block;
 }
