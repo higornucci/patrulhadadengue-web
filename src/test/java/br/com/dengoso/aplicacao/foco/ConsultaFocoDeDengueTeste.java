@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -16,8 +17,8 @@ import static org.junit.Assert.*;
 
 public class ConsultaFocoDeDengueTeste {
 
-    private static final double  _20_496323D =  -20.496323d;
-    private static final double  _20_496455D =  -20.496455d;
+    private static final double _20_496323D = -20.496323d;
+    private static final double _20_496455D = -20.496455d;
     private FocoDeDengueRepository focoDeDengueRepository;
     private Coordenadas coordenadas;
 
@@ -51,7 +52,20 @@ public class ConsultaFocoDeDengueTeste {
         assertThat(focosDeDengue, contains(criarResponse(focoDeDengue1), criarResponse(focoDeDengue2)));
     }
 
+    @Test
+    public void deve_retornar_os_focos_com_sua_descricao() throws Exception {
+        FocoDeDengue focoDeDengue1 = FocoDeDengueBuilder.novo().localizadoNas(coordenadas).criar();
+        when(focoDeDengueRepository.findAll()).thenReturn(Collections.singletonList(focoDeDengue1));
+        ConsultaFocoDeDengue consultaFocoDeDengue = new ConsultaFocoDeDengue(focoDeDengueRepository);
+
+        List<FocoDeDengueResponse> focosDeDengue = consultaFocoDeDengue.buscarTodos();
+
+        assertThat(focosDeDengue.stream().findFirst().get().getDescricao(),
+                is(criarResponse(focoDeDengue1).getDescricao()));
+    }
+
     private FocoDeDengueResponse criarResponse(FocoDeDengue focoDeDengue) {
-        return new FocoDeDengueResponse(focoDeDengue.getId(), focoDeDengue.getLatitude(), focoDeDengue.getLongitude(), focoDeDengue.getRaioDoFoco());
+        return new FocoDeDengueResponse(focoDeDengue.getId(), focoDeDengue.getLatitude(), focoDeDengue.getLongitude(),
+                focoDeDengue.getRaioDoFoco(), focoDeDengue.getDescricao());
     }
 }

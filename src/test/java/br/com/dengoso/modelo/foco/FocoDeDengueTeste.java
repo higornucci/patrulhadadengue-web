@@ -62,4 +62,32 @@ public class FocoDeDengueTeste {
 
         assertThat(focoDeDengue.getRaioDoFoco(), is(raioEsperado));
     }
+
+    @Test
+    public void deve_adicionar_uma_descricao_padrao_ao_foco() throws Exception {
+        String descricaoEsperada = "Possível criadouro do mosquito";
+        Coordenadas coordenadasEsperadas = Coordenadas.criar(_20_496323D, _20_496455D);
+
+        FocoDeDengue focoDeDengue = FocoDeDengueBuilder.novo().localizadoNas(coordenadasEsperadas).criar();
+
+        assertThat(focoDeDengue.getDescricao(), is(equalTo(descricaoEsperada)));
+    }
+
+    @Test
+    public void deve_ser_possivel_adicionar_uma_descricao_ao_foco() throws Exception {
+        String descricaoEsperada = "Pneus velhos com água parada";
+        Coordenadas coordenadasEsperadas = Coordenadas.criar(_20_496323D, _20_496455D);
+
+        FocoDeDengue focoDeDengue = FocoDeDengueBuilder.novo().localizadoNas(coordenadasEsperadas).comDescricao(descricaoEsperada).criar();
+
+        assertThat(focoDeDengue.getDescricao(), is(equalTo(descricaoEsperada)));
+    }
+
+    @Test(expected = ExcecaoDeCampoObrigatorio.class)
+    public void deve_ser_obrigatorio_adicionar_uma_descricao_ao_foco() throws Exception {
+        String descricaoEsperada = "";
+        Coordenadas coordenadasEsperadas = Coordenadas.criar(_20_496323D, _20_496455D);
+
+        FocoDeDengueBuilder.novo().localizadoNas(coordenadasEsperadas).comDescricao(descricaoEsperada).criar();
+    }
 }

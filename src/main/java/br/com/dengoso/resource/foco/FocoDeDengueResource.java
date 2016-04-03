@@ -36,7 +36,7 @@ public class FocoDeDengueResource {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> registrarFocoDeDengue(@RequestBody FocoDeDengueRequest focoDeDengueRequest) throws ExcecaoDeCampoObrigatorio {
-		FocoDeDengueRequest focoDeDengue = new FocoDeDengueRequest(focoDeDengueRequest.getLatitude(), focoDeDengueRequest.getLongitude());
+		FocoDeDengueRequest focoDeDengue = new FocoDeDengueRequest(focoDeDengueRequest.getLatitude(), focoDeDengueRequest.getLongitude(), focoDeDengueRequest.getDescricao());
 		adicionaFocoDeDengue.adicionar(focoDeDengue);
 		System.out.println(focoDeDengue.getLatitude() + ", " + focoDeDengue.getLongitude());
 

@@ -40,22 +40,23 @@ angular.module('module.mapa', [])
             mapa.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
         }
 
-        function adicionarMarcadorNoBanco(mapa, coordenadas) {
-            var coordenadasParaEnvio = {
+        function adicionarMarcadorNoBanco(mapa, coordenadas, descricaoDoFoco) {
+            var focoDeDengueASerCadastrado = {
                 latitude: coordenadas.lat,
-                longitude: coordenadas.lng
+                longitude: coordenadas.lng,
+                descricao: descricaoDoFoco
             };
-            $http.post('/focos', coordenadasParaEnvio).success(function () {
-                adicionarFoco(mapa, coordenadas, 100);
+            $http.post('/focos', focoDeDengueASerCadastrado).success(function () {
+                adicionarFoco(mapa, coordenadas, descricaoDoFoco, 100);
             });
         }
 
-        function adicionarFoco(mapa, latLng, raio) {
+        function adicionarFoco(mapa, latLng, descricaoDoFoco, raio) {
             var image = 'img/map-marker.png';
             new google.maps.Marker({
                 position: latLng,
                 map: mapa,
-                title: 'Existe um foco de dengue aqui',
+                title: descricaoDoFoco,
                 icon: image
             });
             adicionarRaioDoFoco(mapa, latLng, raio);
@@ -111,7 +112,8 @@ angular.module('module.mapa', [])
                     lng: focosDeDengue[i].longitude
                 };
                 var raio = focosDeDengue[i].raioDoFoco;
-                adicionarFoco(mapa, coordenadas, raio);
+                var descricao = focosDeDengue[i].descricao;
+                adicionarFoco(mapa, coordenadas, descricao, raio);
             }
 
             mapa.addListener("click", function (event) {
@@ -119,7 +121,7 @@ angular.module('module.mapa', [])
                     lat: event.latLng.lat(),
                     lng: event.latLng.lng()
                 };
-                adicionarMarcadorNoBanco(mapa, coordenadas);
+                adicionarMarcadorNoBanco(mapa, coordenadas, '');
             });
         }
 

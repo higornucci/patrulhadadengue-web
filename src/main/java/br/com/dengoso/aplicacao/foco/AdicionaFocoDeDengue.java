@@ -22,11 +22,25 @@ public class AdicionaFocoDeDengue {
 
 	@Transactional
 	public void adicionar(FocoDeDengueRequest focoDeDengueRequest) throws ExcecaoDeCampoObrigatorio {
-		Coordenadas coordenadas = Coordenadas.criar(focoDeDengueRequest.getLatitude(), focoDeDengueRequest.getLongitude());
-		FocoDeDengue focoDeDengue = FocoDeDengue.criar(coordenadas);
-		
+        FocoDeDengue focoDeDengue = criarFocoDeDengue(focoDeDengueRequest);
+
 		focoDeDengueRepository.save(focoDeDengue);
 		focoDeDengueRequest.setId(focoDeDengue.getId());
 	}
+
+    private FocoDeDengue criarFocoDeDengue(FocoDeDengueRequest focoDeDengueRequest) throws ExcecaoDeCampoObrigatorio {
+        Coordenadas coordenadas = Coordenadas.criar(focoDeDengueRequest.getLatitude(), focoDeDengueRequest.getLongitude());
+        FocoDeDengue focoDeDengue;
+        if(focoNaoTemDescricao(focoDeDengueRequest)) {
+            focoDeDengue = FocoDeDengue.criar(coordenadas);
+        } else {
+            focoDeDengue = FocoDeDengue.criar(coordenadas, focoDeDengueRequest.getDescricao());
+        }
+        return focoDeDengue;
+    }
+
+    private boolean focoNaoTemDescricao(FocoDeDengueRequest focoDeDengueRequest) {
+        return focoDeDengueRequest.getDescricao().isEmpty();
+    }
 
 }

@@ -37,6 +37,7 @@ public class ConsultaFocoDeDengue {
                 focoDeDengue.getId(),
                 focoDeDengue.getLatitude(),
                 focoDeDengue.getLongitude(),
-                focoDeDengue.getRaioDoFoco());
+                focoDeDengue.getRaioDoFoco(),
+				focoDeDengue.getDescricao());
 	}
 }

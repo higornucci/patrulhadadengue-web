@@ -1,17 +1,18 @@
 package br.com.dengoso.aplicacao.foco;
 
-public class FocoDeDengueRequest {
+public class FocoDeDengueRequest extends BaseRequest {
 
 	private double latitude;
 	private double longitude;
-	private Long id;
-	
-	public FocoDeDengueRequest() {
-	}
+	private String descricao;
 
-	public FocoDeDengueRequest(double latitude, double longitude) {
+    public FocoDeDengueRequest() {
+    }
+
+	public FocoDeDengueRequest(double latitude, double longitude, String descricao) {
 		this.latitude = latitude;
 		this.longitude = longitude;
+		this.descricao = descricao;
 	}
 	
 	public double getLatitude() {
@@ -22,11 +23,7 @@ public class FocoDeDengueRequest {
 		return longitude;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	public Long getId() {
-		return id;
+	public String getDescricao() {
+		return this.descricao;
 	}
 }

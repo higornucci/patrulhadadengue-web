@@ -5,7 +5,7 @@ import java.util.List;
 
 public final class ExcecaoDeCampoObrigatorio extends Exception {
 
-    private final List<String> erros = new ArrayList<String>();
+    private final List<String> erros = new ArrayList<>();
 
     public ExcecaoDeCampoObrigatorio() {
     }
@@ -16,10 +16,6 @@ public final class ExcecaoDeCampoObrigatorio extends Exception {
 
     private boolean possuiErro() {
         return !erros.isEmpty();
-    }
-
-    public List<String> getErros() {
-        return erros;
     }
 
     private ExcecaoDeCampoObrigatorio quando(boolean condicao, String mensagem) {
@@ -39,7 +35,7 @@ public final class ExcecaoDeCampoObrigatorio extends Exception {
         }
     }
 
-    public ExcecaoDeCampoObrigatorio quandoNulo(Object obj, String mensagem) {
+    private ExcecaoDeCampoObrigatorio quandoNulo(Object obj, String mensagem) {
         quando(obj == null, mensagem);
         return this;
     }
@@ -48,6 +44,14 @@ public final class ExcecaoDeCampoObrigatorio extends Exception {
         quandoNulo(valor, mensagem);
         if (!possuiErro()) {
             quando(valor == 0, mensagem);
+        }
+        return this;
+    }
+
+    public ExcecaoDeCampoObrigatorio quandoNuloOuVazio(String valor, String mensagem) {
+        quandoNulo(valor, mensagem);
+        if (!possuiErro()) {
+            quando(valor.isEmpty(), mensagem);
         }
         return this;
     }

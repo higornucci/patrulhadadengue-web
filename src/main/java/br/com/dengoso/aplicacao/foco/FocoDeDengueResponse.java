@@ -5,12 +5,14 @@ public class FocoDeDengueResponse extends BaseResponse {
 	private double latitude;
 	private double longitude;
 	private int raioDoFoco;
+	private String descricao;
 
-	public FocoDeDengueResponse(Long id, double latitude, double longitude, int raioDoFoco) {
+	public FocoDeDengueResponse(Long id, double latitude, double longitude, int raioDoFoco, String descricao) {
 		super(id);
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.raioDoFoco = raioDoFoco;
+		this.descricao = descricao;
 	}
 	
 	public double getLatitude() {
@@ -23,5 +25,9 @@ public class FocoDeDengueResponse extends BaseResponse {
 
 	public int getRaioDoFoco() {
 		return this.raioDoFoco;
+	}
+
+	public String getDescricao() {
+		return descricao;
 	}
 }

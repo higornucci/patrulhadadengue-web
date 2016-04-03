@@ -6,6 +6,7 @@ import br.com.dengoso.modelo.excecao.ExcecaoDeCampoObrigatorio;
 public final class FocoDeDengueBuilder {
 	
 	private Coordenadas coordenadas;
+	private String descricaoEsperada;
 
 	private FocoDeDengueBuilder() {
 	}
@@ -19,8 +20,12 @@ public final class FocoDeDengueBuilder {
 		return this;
 	}
 
-	public FocoDeDengue criar() throws ExcecaoDeCampoObrigatorio {
-		return FocoDeDengue.criar(coordenadas);
+	public FocoDeDengueBuilder comDescricao(String descricaoEsperada) {
+		this.descricaoEsperada = descricaoEsperada;
+		return this;
 	}
 
+	public FocoDeDengue criar() throws ExcecaoDeCampoObrigatorio {
+		return descricaoEsperada == null ? FocoDeDengue.criar(coordenadas) : FocoDeDengue.criar(coordenadas, descricaoEsperada);
+	}
 }
