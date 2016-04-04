@@ -168,3 +168,9 @@ footer {
 p.copyright {
     margin: 15px 0 0;
 }
+
+.btn-registrar-foco {
+    color: burlywood;
+    background-color: brown;
+    border-color: brown;
+}
