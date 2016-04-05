@@ -24,11 +24,10 @@ footer {
 
 #form-descricao-do-foco {
     position: absolute;
-    margin: auto;
     top: 300px;
     width: 75%;
     max-width: 350px;
-    left: 10%;
+    margin: auto auto auto 10px;
 }
 
 .label-descricao-do-foco {
