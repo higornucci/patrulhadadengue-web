@@ -50,11 +50,20 @@
     <!-- /.container -->
 </nav>
 
-<div ng-app="module.mapa" class="container" style="height: 100%; margin-top: 5px; margin-bottom: 5px" ng-cloak class="ng-cloak" ng-controller="MapCtrl">
+<div ng-app="module.mapa" class="container" style="height: 100%; margin-top: 5px; margin-bottom: 5px" ng-cloak class="ng-cloak" ng-controller="MapaCtrl as mapaCtrl">
     <div class="alert alert-info alert-dismissible" role="alert" style="text-align: center">Clique no mapa para
         registrar o foco da dengue que você encontrou.
     </div>
     <div id="mapa"></div>
+    <form id="form-descricao-do-foco" ng-show="mapaCtrl.vaiDescrever" >
+        <div class="form-group">
+            <label for="campo-descricao" class="label-descricao-do-foco">Oi. Você está prestes a adiconar um foco do mosquito.
+                Descreva o local onde este foco foi encontrado.</label>
+            <input type="text" ng-model="mapaCtrl.descricaoDoFoco" class="form-control input-descricao-do-foco" id="campo-descricao" placeholder="ex: pneus cheios d'água">
+            <button type="button" ng-click="mapaCtrl.cancelarDescricao()" class="btn btn-danger button-descricao-do-foco-x">X</button>
+            <button type="button" ng-click="mapaCtrl.confirmarDescricao()" class="btn btn-success button-descricao-do-foco-ok">OK</button>
+        </div>
+    </form>
     <!-- Footer -->
     <footer>
         <div class="container">

@@ -21,3 +21,30 @@ footer {
 #mapa {
     height: 100%;
 }
+
+#form-descricao-do-foco {
+    position: absolute;
+    margin: auto;
+    top: 300px;
+    width: 75%;
+    max-width: 350px;
+    left: 10%;
+}
+
+.label-descricao-do-foco {
+    background-color: whitesmoke;
+    padding: 5px;
+}
+
+.button-descricao-do-foco-ok {
+    width: 16%;
+}
+
+.button-descricao-do-foco-x {
+    width: 13%;
+}
+
+.input-descricao-do-foco {
+    max-width: 68%;
+    display: inline-block !important;
+}

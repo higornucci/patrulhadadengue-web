@@ -1,5 +1,23 @@
 angular.module('module.mapa', [])
-    .controller('MapCtrl', ['$http', function ($http) {
+    .controller('MapaCtrl', ['$http', '$scope', function ($http, $scope) {
+        var self = this;
+        self.mapa = '';
+        self.vaiDescrever = false;
+        self.coordenadasClicadas = {
+            lat: 1,
+            lng: 1
+        };
+        self.descricaoDoFoco = '';
+
+        self.cancelarDescricao = function () {
+            self.vaiDescrever = false;
+        };
+
+        function adicionarCampoDescricao() {
+            $scope.$apply(function () {
+                self.vaiDescrever = true;
+            });
+        }
 
         function adicionarBotaoMinhaLocalizacao(mapa, initialLocation) {
             var controlDiv = document.createElement('div');
@@ -40,14 +58,16 @@ angular.module('module.mapa', [])
             mapa.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(controlDiv);
         }
 
-        function adicionarMarcadorNoBanco(mapa, coordenadas, descricaoDoFoco) {
-            var focoDeDengueASerCadastrado = {
-                latitude: coordenadas.lat,
-                longitude: coordenadas.lng,
-                descricao: descricaoDoFoco
-            };
-            $http.post('/focos', focoDeDengueASerCadastrado).success(function () {
-                adicionarFoco(mapa, coordenadas, descricaoDoFoco, 100);
+        function adicionarRaioDoFoco(mapa, latLng, raio) {
+            new google.maps.Circle({
+                map: mapa,
+                radius: raio,
+                center: latLng,
+                fillColor: '#AA6F39',
+                fillOpacity: 0.3,
+                strokeColor: '#AB5709',
+                strokeOpacity: 0.7,
+                strokeWeight: 2
             });
         }
 
@@ -62,18 +82,20 @@ angular.module('module.mapa', [])
             adicionarRaioDoFoco(mapa, latLng, raio);
         }
 
-        function adicionarRaioDoFoco(mapa, latLng, raio) {
-            new google.maps.Circle({
-                map: mapa,
-                radius: raio,
-                center: latLng,
-                fillColor: '#AA6F39',
-                fillOpacity: 0.3,
-                strokeColor: '#AB5709',
-                strokeOpacity: 0.7,
-                strokeWeight: 2
-            });
+        function adicionarMarcadorNoBanco(coordenadas, descricaoDoFoco) {
+            var focoDeDengueASerCadastrado = {
+                latitude: coordenadas.lat,
+                longitude: coordenadas.lng,
+                descricao: descricaoDoFoco
+            };
+            $http.post('/focos', focoDeDengueASerCadastrado).success();
         }
+
+        self.confirmarDescricao = function () {
+            self.vaiDescrever = false;
+            adicionarMarcadorNoBanco(self.coordenadasClicadas, self.descricaoDoFoco);
+            adicionarFoco(self.mapa, self.coordenadasClicadas, self.descricaoDoFoco, 100);
+        };
 
         function iniciarMapa(focosDeDengue) {
 
@@ -85,7 +107,7 @@ angular.module('module.mapa', [])
                 lng: -53.35361
             };
 
-            var mapa = new google.maps.Map(document.getElementById('mapa'), {
+            self.mapa = new google.maps.Map(document.getElementById('mapa'), {
                 zoom: zoomPadrao,
                 streetViewControl: true,
                 disableDoubleClickZoom: true,
@@ -95,13 +117,13 @@ angular.module('module.mapa', [])
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                    mapa.setCenter(initialLocation);
-                    adicionarBotaoMinhaLocalizacao(mapa, initialLocation);
+                    self.mapa.setCenter(initialLocation);
+                    adicionarBotaoMinhaLocalizacao(self.mapa, initialLocation);
                 }, function () {
-                    mapa.setCenter(campoGrande);
+                    self.mapa.setCenter(campoGrande);
                 });
             } else {
-                mapa.setCenter(campoGrande);
+                self.mapa.setCenter(campoGrande);
             }
 
 
@@ -113,15 +135,15 @@ angular.module('module.mapa', [])
                 };
                 var raio = focosDeDengue[i].raioDoFoco;
                 var descricao = focosDeDengue[i].descricao;
-                adicionarFoco(mapa, coordenadas, descricao, raio);
+                adicionarFoco(self.mapa, coordenadas, descricao, raio);
             }
 
-            mapa.addListener("click", function (event) {
-                coordenadas = {
+            self.mapa.addListener("click", function (event) {
+                adicionarCampoDescricao();
+                self.coordenadasClicadas = {
                     lat: event.latLng.lat(),
                     lng: event.latLng.lng()
                 };
-                adicionarMarcadorNoBanco(mapa, coordenadas, '');
             });
         }
 
