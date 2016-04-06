@@ -88,7 +88,7 @@ angular.module('module.mapa', [])
                 longitude: coordenadas.lng,
                 descricao: descricaoDoFoco
             };
-            $http.post('/focos', focoDeDengueASerCadastrado).success();
+            $http.post('/focos', focoDeDengueASerCadastrado);
         }
 
         self.confirmarDescricao = function () {
