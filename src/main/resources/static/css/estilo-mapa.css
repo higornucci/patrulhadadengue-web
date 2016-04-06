@@ -33,6 +33,7 @@ footer {
 .label-descricao-do-foco {
     background-color: whitesmoke;
     padding: 5px;
+    margin-bottom: 5px;
 }
 
 .button-descricao-do-foco-ok {
