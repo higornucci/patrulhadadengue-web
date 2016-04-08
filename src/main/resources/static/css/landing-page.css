@@ -174,3 +174,11 @@ p.copyright {
     background-color: brown;
     border-color: brown;
 }
+
+.google-play {
+    background-size: 200px 68px;
+    padding: 0 0 65px 206px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-image: url("../img/googleplaystore.png");
+}
