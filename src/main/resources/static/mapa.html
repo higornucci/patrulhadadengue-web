@@ -64,6 +64,12 @@
             <button type="button" ng-click="mapaCtrl.confirmarDescricao()" class="btn btn-success button-descricao-do-foco-ok">OK</button>
         </div>
     </form>
+    <form id="form-geolocalizacao" ng-show="mapaCtrl.geolocationDesativada">
+        <div class="recarregar-gps">
+            <label class="label-descricao-do-foco">Ative a localização do seu navegador para utilizar o aplicativo.</label>
+            <button type="button" ng-click="mapaCtrl.recarregarPagina()" class="btn btn-default btn-recarregar"><i class="glyphicon glyphicon-refresh" aria-hidden="true"></i><span class="mensagem-gps">Recarregar...</span></button>
+        </div>
+    </form>
     <!-- Footer -->
     <footer>
         <div class="container">

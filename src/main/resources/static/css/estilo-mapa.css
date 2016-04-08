@@ -48,3 +48,24 @@ footer {
     max-width: 68%;
     display: inline-block !important;
 }
+
+#form-geolocalizacao {
+    position: absolute;
+    top: 200px;
+    width: 84%;
+    max-width: 450px;
+    margin: auto auto auto 10px;
+}
+
+.recarregar-gps {
+    background-color: whitesmoke;
+}
+
+.btn-recarregar {
+    margin-left: 30%;
+    margin-bottom: 3% !important;
+}
+
+.mensagem-gps {
+    padding-left: 5px;
+}

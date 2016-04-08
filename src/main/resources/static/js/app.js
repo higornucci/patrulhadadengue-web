@@ -1,13 +1,19 @@
 angular.module('module.mapa', [])
-    .controller('MapaCtrl', ['$http', '$scope', function ($http, $scope) {
+    .controller('MapaCtrl', ['$http', '$scope', '$window', function ($http, $scope, $window) {
         var self = this;
         self.mapa = '';
+        self.geolocationDesativada = false;
         self.vaiDescrever = false;
         self.coordenadasClicadas = {
             lat: 1,
             lng: 1
         };
         self.descricaoDoFoco = '';
+
+        self.recarregarPagina = function () {
+            $window.location.reload(true);
+            self.geolocationDesativada = false;
+        };
 
         self.cancelarDescricao = function () {
             self.vaiDescrever = false;
@@ -118,9 +124,12 @@ angular.module('module.mapa', [])
                 navigator.geolocation.getCurrentPosition(function (position) {
                     initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                     self.mapa.setCenter(initialLocation);
+                    self.geolocationDesativada = false;
                     adicionarBotaoMinhaLocalizacao(self.mapa, initialLocation);
                 }, function () {
-                    self.mapa.setCenter(campoGrande);
+                    $scope.$apply(function () {
+                        self.geolocationDesativada = true;
+                    });
                 });
             } else {
                 self.mapa.setCenter(campoGrande);
