@@ -77,14 +77,26 @@ angular.module('module.mapa', [])
             });
         }
 
+        function adicionarJanelaDeInformacao(mapa, marcador, descricaoDoFoco) {
+            var infoWindow = new google.maps.InfoWindow({
+                content: descricaoDoFoco
+            });
+
+            google.maps.event.addListener(marcador, 'click', function () {
+                infoWindow.open(mapa, marcador);
+            });
+        }
+
         function adicionarFoco(mapa, latLng, descricaoDoFoco, raio) {
             var image = 'img/map-marker.png';
-            new google.maps.Marker({
+            var marcador = new google.maps.Marker({
                 position: latLng,
                 map: mapa,
+                animation: google.maps.Animation.DROP,
                 title: descricaoDoFoco,
                 icon: image
             });
+            adicionarJanelaDeInformacao(mapa, marcador, descricaoDoFoco);
             adicionarRaioDoFoco(mapa, latLng, raio);
         }
 
