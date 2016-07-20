@@ -73,7 +73,8 @@ angular.module('module.mapa', [])
                 fillOpacity: 0.3,
                 strokeColor: '#AB5709',
                 strokeOpacity: 0.7,
-                strokeWeight: 2
+                strokeWeight: 2,
+                clickable: false
             });
         }
 
