@@ -54,6 +54,7 @@
     <div class="alert alert-info alert-dismissible" role="alert" style="text-align: center">Clique no mapa para
         registrar o foco da dengue que você encontrou.
     </div>
+    <input id="pac-input" class="controls" type="text" placeholder="Procure por um local">
     <div id="mapa"></div>
     <form id="form-descricao-do-foco" ng-show="mapaCtrl.vaiDescrever" >
         <div class="form-group">
@@ -95,7 +96,7 @@
     </footer>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyvUvW-ejncX6xqy7pqf-c9Evz_wDF_Hc&signed_in=true"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyvUvW-ejncX6xqy7pqf-c9Evz_wDF_Hc&signed_in=true&libraries=places"></script>
 <script src="js/angular-bootstrap.js" type="text/javascript"></script>
 <script src="js/app.js"></script>
 <script src="js/analise/hotjar.js" type="text/javascript"></script>
