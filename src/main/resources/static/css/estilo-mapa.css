@@ -83,7 +83,7 @@ footer {
 
 #pac-input {
     background-color: #fff;
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-size: 15px;
     font-weight: 300;
     margin-left: 12px;
@@ -97,17 +97,17 @@ footer {
 }
 
 .pac-container {
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
 }
 
 #type-selector {
     color: #fff;
     background-color: #4d90fe;
-    padding: 5px 11px 0px 11px;
+    padding: 5px 11px 0 11px;
 }
 
 #type-selector label {
-    font-family: Roboto;
+    font-family: Roboto, sans-serif;
     font-size: 13px;
     font-weight: 300;
 }
