@@ -1,6 +1,4 @@
-# Patrulha da Dengue 
-
-[![Build Status](https://travis-ci.org/higornucci/patrulhadadengue-web.svg?branch=master)](https://travis-ci.org/higornucci/patrulhadadengue-web)
+# Patrulha da Dengue
 
 Este pequeno projeto Open Source visa ajudar a localizar os focos da dengue em todo o Brasil.
 
