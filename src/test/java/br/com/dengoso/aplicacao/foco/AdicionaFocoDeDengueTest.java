@@ -10,7 +10,7 @@ import org.junit.Test;
 import br.com.dengoso.modelo.foco.FocoDeDengue;
 import br.com.dengoso.modelo.foco.FocoDeDengueRepository;
 
-public class AdicionaFocoDeDengueTeste {
+public class AdicionaFocoDeDengueTest {
 
 	private FocoDeDengueRepository focoDeDengueRepository;
 	private double latitudeEsperada;
