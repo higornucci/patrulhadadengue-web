@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.*;
 
 import static org.junit.Assert.assertEquals;
 
-public class FocoDeDengueTeste {
+public class FocoDeDengueTest {
 
     private static final double  _20_496323D =  -20.496323d;
     private static final double  _20_496455D =  -20.496455d;

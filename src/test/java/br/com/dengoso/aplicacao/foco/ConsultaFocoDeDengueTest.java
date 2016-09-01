@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
-public class ConsultaFocoDeDengueTeste {
+public class ConsultaFocoDeDengueTest {
 
     private static final double _20_496323D = -20.496323d;
     private static final double _20_496455D = -20.496455d;
